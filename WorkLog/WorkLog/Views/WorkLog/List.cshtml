@@ -1,0 +1,61 @@
+﻿@model IEnumerable<WorkLog.Models.ViewModel.OperationLog>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>List</h1>
+
+<p>
+    <a class="btn btn-primary mb-2" href="/WorkLog/Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartingTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FinishingTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProcessedTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Details)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @item.StartingTime.ToString("HH:mm")
+                </td>
+                <td>
+                    @item.FinishingTime.ToString("HH:mm")
+                </td>
+                <td>
+                    @item.ProcessedTime.ToString(@"hh\:mm")
+                </td>
+                <td>
+                    @item.Status
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Details)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

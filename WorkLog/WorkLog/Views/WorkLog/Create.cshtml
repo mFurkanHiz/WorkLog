@@ -1,0 +1,59 @@
+﻿@model WorkLog.Models.ViewModel.OperationLog
+
+<h1>Create</h1>
+
+<h4>OperationLog</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="StartingTime" class="control-label"></label>
+                <input asp-for="StartingTime" type="time" class="form-control" />
+                <span asp-validation-for="StartingTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FinishingTime" class="control-label"></label>
+                <input asp-for="FinishingTime" type="time" class="form-control" />
+                <span asp-validation-for="FinishingTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Did production stop?</label>
+                <input type="checkbox" id="statusCheckbox" value="true" />
+                <input asp-for="Status" type="hidden" id="statusHidden" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Details" class="control-label"></label>
+                <input asp-for="Details" class="form-control" />
+                <span asp-validation-for="Details" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="List">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        var statusCheckbox = document.getElementById('statusCheckbox');
+        var statusHidden = document.getElementById('statusHidden');
+
+        statusCheckbox.addEventListener('change', function () {
+            if (statusCheckbox.checked) {
+                statusHidden.value = 'DURUŞ';
+            } else {
+                statusHidden.value = 'ÜRETİM';
+            }
+        });
+    </script>
+}
